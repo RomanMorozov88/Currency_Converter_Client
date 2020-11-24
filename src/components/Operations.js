@@ -18,9 +18,10 @@ query ($page: Int, $size: Int){
     }
   }`;
 
-const Conversion = ({ size }) => {
+const Conversion = () => {
 
     const [page, setPage] = React.useState(0);
+    const [size, setSize] = React.useState(4);
 
     const [
         getResult,
@@ -47,15 +48,17 @@ const Conversion = ({ size }) => {
                     getResult({ variables: { page: 0, size } });
                 }
             }>Go to the zero!</button>
-            {data &&
-                data.getOperations &&
-                data.getOperations.map((op, i) =>
-                    <div key={i}>
-                        <p>{op.pair.fromCurrency.name} - {op.pair.toCurrency.name}</p>
-                        <p>{op.amount}</p>
-                        <p>{op.date}</p>
-                        <p> * * *</p>
-                    </div>)}
+            <div>
+                {data &&
+                    data.getOperations &&
+                    data.getOperations.map((op, i) =>
+                        <div key={i}>
+                            <p>{op.pair.fromCurrency.name} - {op.pair.toCurrency.name}</p>
+                            <p>{op.amount}</p>
+                            <p>{op.date}</p>
+                            <p> * * *</p>
+                        </div>)}
+            </div>
         </div>
     );
 }

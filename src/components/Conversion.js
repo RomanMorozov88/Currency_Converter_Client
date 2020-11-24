@@ -25,6 +25,7 @@ const Conversion = ({ fromId, toId, amount }) => {
                     || toId == null
                     || amount == null
                     || amount <= 0
+                    || fromId === toId
                 ) {
                     return (
                         alert('Insert all data correctly.')

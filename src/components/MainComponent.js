@@ -10,7 +10,8 @@ class MainComponent extends React.Component {
         this.state = {
             selectedFrom: null,
             selectedTo: null,
-            amount: null
+            amount: null,
+            loadOperations: false
         };
     }
 
@@ -23,8 +24,12 @@ class MainComponent extends React.Component {
     amountChange = ({ target }) => {
         this.setState(() => ({ amount: target.value }));
     };
-    s
-    render() {
+
+    loadStuff = () => {
+        this.setState({ loadWorksheep: !this.state.loadWorksheep });
+    }
+
+    LoadConverter = () => {
         return (
             <div>
                 <GetCurrencySelect
@@ -39,10 +44,23 @@ class MainComponent extends React.Component {
                     amount={this.state.amount}
                 />
 
-                <Operations
-                    size={4}
-                />
+            </div>
+        );
+    }
 
+    LoadOperations = () => {
+        return (
+            <div>
+                <Operations />
+            </div>
+        );
+    }
+
+    render() {
+        return (
+            <div>
+                <button onClick={this.loadStuff}>Switch!</button>
+                <div>{this.state.loadWorksheep ? <this.LoadOperations /> : <this.LoadConverter />}</div>
             </div>
         );
     }
