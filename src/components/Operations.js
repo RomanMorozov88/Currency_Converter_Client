@@ -13,7 +13,8 @@ query ($page: Int, $size: Int){
                 name
             }
         }
-        amount
+        fromAmount
+        toAmount
 	    date
     }
   }`;
@@ -54,7 +55,7 @@ const Conversion = () => {
                     data.getOperations.map((op, i) =>
                         <div key={i}>
                             <p>{op.pair.fromCurrency.name} - {op.pair.toCurrency.name}</p>
-                            <p>{op.amount}</p>
+                            <p>{op.fromAmount} - {op.toAmount}</p>
                             <p>{op.date}</p>
                             <p> * * *</p>
                         </div>)}

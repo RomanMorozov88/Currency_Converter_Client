@@ -1,9 +1,10 @@
 import React from 'react';
 import { useLazyQuery } from '@apollo/react-hooks';
+import { useMutation } from '@apollo/client';
 import gql from "graphql-tag";
 
 const GET_CONVERSION = gql` 
-query ($fromId: String!, $toId: String!, $amount: Float!){
+mutation ($fromId: String!, $toId: String!, $amount: Float!){
     getCurrencyConversion(fromId: $fromId, toId: $toId, amount: $amount)
   }`;
 
@@ -12,7 +13,7 @@ const Conversion = ({ fromId, toId, amount }) => {
     const [
         getResult,
         { data, loading, error }
-    ] = useLazyQuery(GET_CONVERSION);
+    ] = useMutation(GET_CONVERSION);
 
     if (loading) return <p>loading...</p>;
     if (error) return <p>ERROR</p>;
