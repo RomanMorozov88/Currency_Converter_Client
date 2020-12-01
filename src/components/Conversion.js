@@ -5,7 +5,9 @@ import gql from "graphql-tag";
 
 const GET_CONVERSION = gql` 
 mutation ($fromId: String!, $toId: String!, $amount: Float!){
-    getCurrencyConversion(fromId: $fromId, toId: $toId, amount: $amount)
+    getCurrencyConversion(fromId: $fromId, toId: $toId, amount: $amount) {
+        result
+    }
   }`;
 
 const Conversion = ({ fromId, toId, amount }) => {
@@ -35,7 +37,7 @@ const Conversion = ({ fromId, toId, amount }) => {
                 getResult({ variables: { fromId, toId, amount } })
             }
             }>Go convert!</button>
-            {data && <p>{data.getCurrencyConversion}</p>}
+            {data && <p>{data.getCurrencyConversion.result}</p>}
         </div>
     );
 }
