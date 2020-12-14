@@ -7,6 +7,7 @@ const GET_CONVERSION = gql`
 mutation ($fromId: String!, $toId: String!, $amount: Float!){
     getCurrencyConversion(fromId: $fromId, toId: $toId, amount: $amount) {
         result
+        rateDate
     }
   }`;
 
@@ -37,7 +38,12 @@ const Conversion = ({ fromId, toId, amount }) => {
                 getResult({ variables: { fromId, toId, amount } })
             }
             }>Go convert!</button>
-            {data && <p>{data.getCurrencyConversion.result}</p>}
+            {data
+                && <p>{data.getCurrencyConversion.result}</p>
+            }
+            {data
+                && <p>{data.getCurrencyConversion.rateDate}</p>
+            }
         </div>
     );
 }
